@@ -27,7 +27,7 @@ public class EmailServiceImpl implements EmailService {
             helper.setTo(correoDto.getEmail());
             helper.setSubject(correoDto.getObservaciones());
             helper.setText(correoDto.getDireccion(), true);
-            helper.setFrom("david.melgar@colibrihub.com");
+            helper.setFrom("samyueru312@gmail.com");
             javaMailSender.send(mimeMessage);
         } catch (MailException | MessagingException e) {
             e.printStackTrace();
