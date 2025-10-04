@@ -1,0 +1,17 @@
+server:
+  port: 8091
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: david.melgar@colibrihub.com
+    password: sdgfhdjdgffdgsdnhffdsf
+    protocol: smtp
+    tls: true
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
