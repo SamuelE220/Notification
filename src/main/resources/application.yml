@@ -1,11 +1,11 @@
 server:
-  port: 8091
+  port: 8092
 spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: david.melgar@colibrihub.com
-    password: sdgfhdjdgffdgsdnhffdsf
+    username: samyueru312@gmail.com
+    password: qotzzrkbwbqvqcub
     protocol: smtp
     tls: true
     default-encoding: UTF-8
