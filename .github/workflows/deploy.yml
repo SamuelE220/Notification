@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.USERNAME_VPS }}
           key: ${{ secrets.SSH_KEY }}
           source: "."
-          target: "/home/ubuntu/Proyectophp/pruebagit/app_php"
+          target: "/home/ubuntu/notification"
 
       # 4️⃣ Ejecutar comandos de deploy en VPS
       - name: Run deploy commands on VPS
@@ -48,15 +48,15 @@ jobs:
             pwd
 
             # Navegar a la carpeta del proyecto
-            cd /home/ubuntu/Proyectophp/pruebagit/app_php
+            cd /home/ubuntu/notification
             
             # Construir la nueva imagen de Docker
-            docker build -t cliente-docker-image .
+            docker build -t notification-app .
 
             # Detener y eliminar el contenedor existente si está corriendo
-            docker stop cliente-app || true
-            docker rm cliente-app || true
+            docker stop notification-app || true
+            docker rm notification-app || true
 
             # Ejecutar el nuevo contenedor con la nueva imagen
-            docker run -d --name cliente-app -p 8091:80 cliente-docker-image
+            docker run -d --name notification-app -p 8092:80 notification-app
 
