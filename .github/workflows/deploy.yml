@@ -34,7 +34,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: "."
           target: "/home/ubuntu/notification"
-          tar_exec: "tar --no-same-owner --no-same-permissions -czf"
 
       # 4️⃣ Ejecutar comandos de deploy en VPS
       - name: Run deploy commands on VPS
