@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.USERNAME_VPS }}
           key: ${{ secrets.SSH_KEY }}
           source: "."
-          target: "/home/ubuntu/notification"
+          target: "/home/***/notification"
 
       # 4️⃣ Ejecutar comandos de deploy en VPS
       - name: Run deploy commands on VPS
@@ -48,7 +48,7 @@ jobs:
             pwd
 
             # Navegar a la carpeta del proyecto
-            cd /home/ubuntu/notification
+            cd /home/***/notification
             
             # Construir la nueva imagen de Docker
             docker build -t notification-app .
@@ -59,4 +59,3 @@ jobs:
 
             # Ejecutar el nuevo contenedor con la nueva imagen
             docker run -d --name notification-app -p 8092:80 notification-app
-
