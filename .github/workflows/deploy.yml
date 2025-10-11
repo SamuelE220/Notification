@@ -54,8 +54,8 @@ jobs:
             docker build -t notification-app .
 
             # Detener y eliminar el contenedor existente si está corriendo
-            docker stop notification-app || true
-            docker rm notification-app || true
+            docker stop notification-container || true
+            docker rm notification-container || true
 
             # Ejecutar el nuevo contenedor con la nueva imagen
             docker run -d --name notification-app -p 8092:80 notification-app
