@@ -48,7 +48,7 @@ jobs:
             pwd
 
             # Navegar a la carpeta del proyecto
-            cd /home/ubuntu/Notification
+            cd /home/ubuntu/notification
             
             # Construir la nueva imagen de Docker
             docker build -t notification-app .
