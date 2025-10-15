@@ -58,4 +58,4 @@ jobs:
             docker rm notification-app || true
 
             # Ejecutar el nuevo contenedor con la nueva imagen
-            docker run -d --name notification-app -p 8092:80 notification-app
+            docker run -d --name notification-app -p 8092:8092 notification-app
