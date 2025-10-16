@@ -51,11 +51,11 @@ jobs:
             cd /home/ubuntu/Notification
             
             # Construir la nueva imagen de Docker
-            docker build -t Notification-app .
+            docker build -t notification-app .
 
             # Detener y eliminar el contenedor existente si está corriendo
-            docker stop Notification-app || true
-            docker rm Notification-app || true
+            docker stop notification-app || true
+            docker rm notification-app || true
 
             # Ejecutar el nuevo contenedor con la nueva imagen
-            docker run -d --name Notification-app -p 8092:8092 Notification-app
+            docker run -d --name notification-app -p 8092:8092 notification-app
