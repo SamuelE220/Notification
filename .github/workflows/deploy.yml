@@ -1,4 +1,4 @@
-name: Deploy to VPS
+name: Deploy Notification to VPS
 
 on:
   push:
@@ -25,22 +25,22 @@ jobs:
             echo "SSH_KEY is set ✅"
           fi
 
-      # 3️⃣ Copiar archivos al VPS
+      # 3️⃣ Copiar archivos al VPS (ruta actualizada y usuario devops)
       - name: Copy files to VPS
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.HOST_VPS }}
-          username: ${{ secrets.USERNAME_VPS }}
+          username: ${{ secrets.USERNAME_VPS }} # debe ser devops en los secrets
           key: ${{ secrets.SSH_KEY }}
           source: "."
-          target: "/home/ubuntu/Notification"
+          target: "/var/www/Notification"
 
       # 4️⃣ Ejecutar comandos de deploy en VPS
       - name: Run deploy commands on VPS
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.HOST_VPS }}
-          username: ${{ secrets.USERNAME_VPS }}
+          username: ${{ secrets.USERNAME_VPS }} # debe ser devops
           key: ${{ secrets.SSH_KEY }}
           script: |
             echo "Verificando que estamos en el VPS correcto..."
@@ -48,14 +48,20 @@ jobs:
             pwd
 
             # Navegar a la carpeta del proyecto
-            cd /home/ubuntu/Notification
+            cd /var/www/Notification
             
             # Construir la nueva imagen de Docker
-            docker build -t notification-app .
+            docker build -t notification_image .
 
             # Detener y eliminar el contenedor existente si está corriendo
-            docker stop notification-app || true
-            docker rm notification-app || true
+            docker stop notification_container || true
+            docker rm notification_container || true
 
             # Ejecutar el nuevo contenedor con la nueva imagen
-            docker run -d --name notification-app -p 8092:8092 notification-app
+            docker run -d \
+              --name notification_container \
+              -p 8081:80 \
+              --memory="512m" \
+              --memory-reservation="512m" \
+              --cpus="0.5" \
+              notification_image
